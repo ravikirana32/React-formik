@@ -32,6 +32,7 @@ const YoutubeForm=()=> {
         onSubmit:onSubmit,
         validate:validate,
     });
+    //console.log("is touched ",formik.touched);
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
@@ -41,24 +42,27 @@ const YoutubeForm=()=> {
                     id="name" 
                     name="name" 
                     onChange={formik.handleChange} 
-                    value={formik.values.name}/>
-                {formik.errors.name && <p style={{color:'red',display:'block'}}>{formik.errors.name}</p>}
+                    value={formik.values.name}
+                    onBlur={formik.handleBlur}/>
+                {(formik.errors.name && formik.touched.name) && <p style={{color:'red',display:'block'}}>{formik.errors.name}</p>}
                 <label htmlFor="email">Email</label>
                 <input 
                     type="email" 
                     id="email" 
                     name="email" 
                     onChange={formik.handleChange} 
-                    value={formik.values.email}/>
-                {formik.errors.email && <p style={{color:'red',display:'block'}}>{formik.errors.email}</p>}
+                    value={formik.values.email}
+                    onBlur={formik.handleBlur}/>
+                {(formik.errors.email && formik.touched.email) && <p style={{color:'red',display:'block'}}>{formik.errors.email}</p>}
                 <label htmlFor="channel">Channel</label>
                 <input 
                     type="text" 
                     id="channel" 
                     name="channel" 
                     onChange={formik.handleChange} 
-                    value={formik.values.channel}/>
-                {formik.errors.channel && <p style={{color:'red',display:'block'}}>{formik.errors.channel}</p>}
+                    value={formik.values.channel}
+                    onBlur={formik.handleBlur}/>
+                {(formik.errors.channel && formik.touched.channel) && <p style={{color:'red',display:'block'}}>{formik.errors.channel}</p>}
                 <button type="submit">Create Channel</button>
             </form>
         </div>
