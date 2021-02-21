@@ -32,7 +32,6 @@ const YoutubeForm=()=> {
         onSubmit:onSubmit,
         validate:validate,
     });
-
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
@@ -43,6 +42,7 @@ const YoutubeForm=()=> {
                     name="name" 
                     onChange={formik.handleChange} 
                     value={formik.values.name}/>
+                {formik.errors.name && <p style={{color:'red',display:'block'}}>{formik.errors.name}</p>}
                 <label htmlFor="email">Email</label>
                 <input 
                     type="email" 
@@ -50,6 +50,7 @@ const YoutubeForm=()=> {
                     name="email" 
                     onChange={formik.handleChange} 
                     value={formik.values.email}/>
+                {formik.errors.email && <p style={{color:'red',display:'block'}}>{formik.errors.email}</p>}
                 <label htmlFor="channel">Channel</label>
                 <input 
                     type="text" 
@@ -57,6 +58,7 @@ const YoutubeForm=()=> {
                     name="channel" 
                     onChange={formik.handleChange} 
                     value={formik.values.channel}/>
+                {formik.errors.channel && <p style={{color:'red',display:'block'}}>{formik.errors.channel}</p>}
                 <button type="submit">Create Channel</button>
             </form>
         </div>
