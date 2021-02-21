@@ -1,5 +1,6 @@
 import React from 'react';
 import {useFormik, ErrorMessage} from 'formik';
+import * as yup from 'yup';
 
 const YoutubeForm=()=> {
     const initialValues={
@@ -27,10 +28,25 @@ const YoutubeForm=()=> {
 
         return errors;
     }
+
+    const validationSchema = yup.object({
+        name:yup
+                .string()
+                .required("name required"),
+        email:yup
+                .string()
+                .email('invalid Email format')
+                .required("Email required"),
+        channel:yup
+                .string()
+                .required("Channel Required")
+    })
+
     const formik = useFormik({
         initialValues:initialValues,
         onSubmit:onSubmit,
-        validate:validate,
+        //validate:validate, // we can use any one yup/normal formic validation function
+        validationSchema:validationSchema
     });
     //console.log("is touched ",formik.touched);
     return (
