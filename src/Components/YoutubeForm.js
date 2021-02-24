@@ -11,7 +11,11 @@ const YoutubeForm=()=> {
         email:'',
         channel:'',
         comments:'',
-        address:''
+        address:'',
+        social:{
+            facebook:'',
+            twitter:''
+        }
     };
     const onSubmit=values=>{
         console.log("Values ",values);
@@ -34,6 +38,7 @@ const YoutubeForm=()=> {
         address:yup
                 .string()
                 .required("Address Required")
+
     })
 
     return (
@@ -93,6 +98,20 @@ const YoutubeForm=()=> {
                                     }
                                 }
                         </Field>
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="facebook">Facebook</label>
+                        <Field 
+                            type="text" 
+                            id="facebook" 
+                            name="social.facebook" />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="twitter">Twitter</label>
+                        <Field 
+                            type="text" 
+                            id="twitter" 
+                            name="social.twitter" />
                     </div>
                     <button type="submit">Create Channel</button>
                 </Form>
