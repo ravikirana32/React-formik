@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import {Formik,Form,Field,ErrorMessage} from 'formik';
+import {Formik,Form,Field,ErrorMessage,FieldArray} from 'formik';
 import * as yup from 'yup';
 import TextErrors from './TextErrors';
 
@@ -16,7 +16,8 @@ const YoutubeForm=()=> {
             facebook:'',
             twitter:''
         },
-        phoneNumbers:['','']
+        phoneNumbers:['',''],
+        phNumbers:['']
     };
     const onSubmit=values=>{
         console.log("Values ",values);
@@ -127,6 +128,26 @@ const YoutubeForm=()=> {
                             type="text" 
                             id="secPh" 
                             name="phoneNumbers[1]" />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="secPh">PH Number</label>
+                        <FieldArray name="phNumbers">
+                                {(data)=>{
+                                    console.log(data);
+                                    const {push,remove,form}=data;
+                                    const {values} =form;
+                                    const {phNumbers}=values;
+                                    return <div>
+                                        {
+                                            phNumbers.map((data,index)=>(
+                                                <div>
+                                                    <Field name={`phNumbers[${index}]`}/><span><button onClick={()=>{push('')}}>+</button><button onClick={()=>{remove(index)}}>-</button></span>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                }}
+                        </FieldArray>
                     </div>
                     <button type="submit">Create Channel</button>
                 </Form>
