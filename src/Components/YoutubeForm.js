@@ -1,7 +1,7 @@
 
 
 import React from 'react';
-import {Formik,Form,Field,ErrorMessage,FieldArray} from 'formik';
+import {Formik,Form,Field,ErrorMessage,FieldArray,FastField} from 'formik';
 import * as yup from 'yup';
 import TextErrors from './TextErrors';
 
@@ -90,16 +90,16 @@ const YoutubeForm=()=> {
                     </div>
                     <div className="form-control">
                     <label htmlFor="address">Address</label>
-                        <Field 
+                        <FastField 
                             name="address" >
                                 {
                                     (props)=>{
+                                        console.log("Address render");
                                         const {field,meta,form}=props;
-                                        console.log(props);
                                         return <><input id="address" type="text" {...field}/>{meta.touched && meta.error?<p>{meta.error}</p>:null}</>
                                     }
                                 }
-                        </Field>
+                        </FastField>
                     </div>
                     <div className="form-control">
                         <label htmlFor="facebook">Facebook</label>
@@ -133,15 +133,14 @@ const YoutubeForm=()=> {
                         <label htmlFor="secPh">PH Number</label>
                         <FieldArray name="phNumbers">
                                 {(data)=>{
-                                    console.log(data);
                                     const {push,remove,form}=data;
                                     const {values} =form;
                                     const {phNumbers}=values;
                                     return <div>
                                         {
                                             phNumbers.map((data,index)=>(
-                                                <div>
-                                                    <Field name={`phNumbers[${index}]`}/><span><button onClick={()=>{push('')}}>+</button><button onClick={()=>{remove(index)}}>-</button></span>
+                                                <div key={index}>
+                                                    <Field name={`phNumbers[${index}]`}/><span><button onClick={()=>{push('')}}>+</button><button disabled={phNumbers.length==1} onClick={()=>{remove(index)}}>-</button></span>
                                                 </div>
                                             ))
                                         }
