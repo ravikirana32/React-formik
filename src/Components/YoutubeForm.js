@@ -59,7 +59,7 @@ const YoutubeForm=()=> {
                 onSubmit={onSubmit}
                 //validateOnBlur={false} //stops the validation check on Blur of any field
                 //validateOnChange={false}  //stops the validation check on Change of any field
-                //validateOnMount={false}  //stops the validation check on Field mount
+               // validateOnMount={true}  //starts the validation check on Field mount(when component loads)
             >
                 {
                     formik=>{
@@ -174,7 +174,7 @@ const YoutubeForm=()=> {
                                     channel:true,
                                     comments:true
                                 })}}>Form Touched</button>
-                                <button type="submit">Create Channel</button>
+                                <button type="submit" style={{display:'block'}} disabled={!(formik.isValid && formik.dirty)}>Create Channel</button>
                             </Form>
             
                         )
