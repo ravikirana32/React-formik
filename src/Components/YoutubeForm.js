@@ -49,6 +49,9 @@ const YoutubeForm=()=> {
                 initialValues={initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
+                //validateOnBlur={false} //stops the validation check on Blur of any field
+                //validateOnChange={false}  //stops the validation check on Change of any field
+                //validateOnMount={false}  //stops the validation check on Field mount
             >
                 <Form>
                     <label htmlFor="name">Name</label>
