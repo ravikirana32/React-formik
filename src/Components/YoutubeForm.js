@@ -23,6 +23,14 @@ const YoutubeForm=()=> {
         console.log("Values ",values);
     };
 
+    const validateComments=value=>{
+        let error;
+        if(!value){
+            error="Required comment";
+        }
+        return error;
+    }
+
     const validationSchema = yup.object({
         name:yup
                 .string()
@@ -34,12 +42,12 @@ const YoutubeForm=()=> {
         channel:yup
                 .string()
                 .required("Channel Required"),
-        comments:yup
-                .string()
-                .required("Comments Required"),
-        address:yup
-                .string()
-                .required("Address Required")
+        // comments:yup
+        //         .string()
+        //         .required("Comments Required"),
+        // address:yup
+        //         .string()
+        //         .required("Address Required")
 
     })
 
@@ -88,8 +96,10 @@ const YoutubeForm=()=> {
                             //component="textarea"//B  both A and  B are same, B is depricated
                             id="comments" 
                             name="comments"
-                            placeholder="Youtube comments" />
-                            <ErrorMessage name='comments' />
+                            placeholder="Youtube comments" 
+                            validate={validateComments}
+                            />
+                            <ErrorMessage name='comments' component={TextErrors}/>
                     </div>
                     <div className="form-control">
                     <label htmlFor="address">Address</label>
