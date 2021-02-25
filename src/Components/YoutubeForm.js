@@ -15,7 +15,8 @@ const YoutubeForm=()=> {
         social:{
             facebook:'',
             twitter:''
-        }
+        },
+        phoneNumbers:['','']
     };
     const onSubmit=values=>{
         console.log("Values ",values);
@@ -112,6 +113,20 @@ const YoutubeForm=()=> {
                             type="text" 
                             id="twitter" 
                             name="social.twitter" />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="pimaryPh">Primary Phone Number</label>
+                        <Field 
+                            type="text" 
+                            id="pimaryPh" 
+                            name="phoneNumbers[0]" />
+                    </div>
+                    <div className="form-control">
+                        <label htmlFor="secPh">Secondory Phone Number</label>
+                        <Field 
+                            type="text" 
+                            id="secPh" 
+                            name="phoneNumbers[1]" />
                     </div>
                     <button type="submit">Create Channel</button>
                 </Form>
