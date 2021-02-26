@@ -19,8 +19,12 @@ const YoutubeForm=()=> {
         phoneNumbers:['',''],
         phNumbers:['']
     };
-    const onSubmit=values=>{
+    const onSubmit=(values,onsubmitProps)=>{
         console.log("Values ",values);
+        console.log("onsubmitProps ",onsubmitProps);
+        setTimeout(()=>{
+            onsubmitProps.setSubmitting(false);
+        },3000)
     };
 
     const validateComments=value=>{
@@ -174,7 +178,7 @@ const YoutubeForm=()=> {
                                     channel:true,
                                     comments:true
                                 })}}>Form Touched</button>
-                                <button type="submit" style={{display:'block'}} disabled={!(formik.isValid && formik.dirty)}>Create Channel</button>
+                                <button type="submit" style={{display:'block'}} disabled={!formik.isValid || formik.isSubmitting}>Create Channel</button>
                             </Form>
             
                         )
