@@ -38,6 +38,7 @@ const YoutubeForm=()=> {
         console.log("onsubmitProps ",onsubmitProps);
         setTimeout(()=>{
             onsubmitProps.setSubmitting(false);
+            onsubmitProps.resetForm();
         },3000)
     };
 
@@ -194,6 +195,7 @@ const YoutubeForm=()=> {
                                     comments:true
                                 })}}>Form Touched</button> */}
                                 <button type="button" style={{display:'block'}} onClick={()=>{setFormValues(savedValues)}}>Load Saved data</button>
+                                <button type="reset" style={{display:'block'}} >Reset</button>
                                 <button type="submit" style={{display:'block'}} disabled={!formik.isValid || formik.isSubmitting}>Create Channel</button>
                             </Form>
             
