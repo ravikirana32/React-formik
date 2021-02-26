@@ -1,11 +1,12 @@
 
 
-import React from 'react';
+import React,{useState} from 'react';
 import {Formik,Form,Field,ErrorMessage,FieldArray,FastField} from 'formik';
 import * as yup from 'yup';
 import TextErrors from './TextErrors';
 
 const YoutubeForm=()=> {
+    const [formValues,setFormValues]=useState(null);
     const initialValues={
         name:'',
         email:'',
@@ -18,6 +19,19 @@ const YoutubeForm=()=> {
         },
         phoneNumbers:['',''],
         phNumbers:['']
+    };
+    const savedValues={
+        name:'ravi kirana',
+        email:'ravi@gmail.com',
+        channel:'sunrays world',
+        comments:'welcome to my world',
+        address:'Ankanahalli',
+        social:{
+            facebook:'facebook/ravikirana',
+            twitter:'twitter/ravikirana'
+        },
+        phoneNumbers:['99999999','99999999'],
+        phNumbers:['7777777',"7777777777"]
     };
     const onSubmit=(values,onsubmitProps)=>{
         console.log("Values ",values);
@@ -58,9 +72,10 @@ const YoutubeForm=()=> {
     return (
         <div>
             <Formik
-                initialValues={initialValues}
+                initialValues={formValues || initialValues}
                 validationSchema={validationSchema}
                 onSubmit={onSubmit}
+                enableReinitialize
                 //validateOnBlur={false} //stops the validation check on Blur of any field
                 //validateOnChange={false}  //stops the validation check on Change of any field
                // validateOnMount={true}  //starts the validation check on Field mount(when component loads)
@@ -169,7 +184,7 @@ const YoutubeForm=()=> {
                                             }}
                                     </FieldArray>
                                 </div>
-                                <button type="button" onClick={()=>{formik.validateField('comments')}}>Validate Comments</button>
+                                {/* <button type="button" onClick={()=>{formik.validateField('comments')}}>Validate Comments</button>
                                 <button type="button" onClick={()=>{formik.validateForm()}}>Validate All</button>
                                 <button type="button" onClick={()=>{formik.setFieldTouched('comments')}}> Comments touched</button>
                                 <button type="button" onClick={()=>{formik.setTouched({
@@ -177,7 +192,8 @@ const YoutubeForm=()=> {
                                     email:true,
                                     channel:true,
                                     comments:true
-                                })}}>Form Touched</button>
+                                })}}>Form Touched</button> */}
+                                <button type="button" style={{display:'block'}} onClick={()=>{setFormValues(savedValues)}}>Load Saved data</button>
                                 <button type="submit" style={{display:'block'}} disabled={!formik.isValid || formik.isSubmitting}>Create Channel</button>
                             </Form>
             
